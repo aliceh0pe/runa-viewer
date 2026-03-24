@@ -1,0 +1,545 @@
+body {
+	
+background-color: #ffe0ff;
+
+}
+
+.navbar {
+    display: flex; /* La magia sucede aquí */
+    align-items: center; /* Centra todo verticalmente */
+    justify-content: space-between; /* Distribuye los 4 divs a lo largo de la barra */
+    background-color: #000000; /* Color oscuro tipo Prime Video */
+    padding: 5px 20px;
+    color: white;
+}
+
+.nav-logo img {
+    height: 40px;      /* Esto es lo más importante: limita el tamaño del logo */
+    width: auto;       /* Mantiene la proporción para que no se vea aplastado */
+    display: block;
+    transition: transform 0.3s ease; /* Un pequeño toque para que sea interactivo */
+}
+
+.nav-logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Contenedor relativo para que el menú no flote por cualquier lado */
+.dropdown-contenedor {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo del botón "Explorar" */
+.boton-menu, .bropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Busca este bloque y actualízalo con estas líneas */
+.nav-links-desplegable, .dropdown-content {
+    /* MANTENEMOS TUS ESTILOS ORIGINALES */
+    position: absolute;
+    top: 100%;
+    background-color: #1a242f; 
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 4px;
+    z-index: 1000;
+
+    /* AGREGAMOS LA MAGIA DEL TIEMPO */
+    display: block;      /* Cambiamos de 'none' a 'block' para que acepte transiciones */
+    visibility: hidden;  /* Lo hace invisible al ojo pero 'está ahí' */
+    opacity: 0;          /* Totalmente transparente */
+    
+    /* El truco del delay: 0.5s de espera antes de esconderse */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition-delay: 0.5s; 
+}
+
+/* El estado cuando pasas el mouse por el PADRE */
+.dropdown-contenedor:hover .nav-links-desplegable,
+.dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s; /* Que aparezca al instante sin esperar nada */
+}
+
+/* Estilo de los elementos dentro del menú */
+.nav-links-desplegable li a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+}
+
+/* Color al pasar el mouse por cada opción */
+.nav-links-desplegable li a:hover {
+    background-color: #303d4d;
+    color: #ffb6c1; /* Un rosita ligero tipo Astolfo/Molly */
+}
+
+/* LA MAGIA: Cuando pasas el mouse por el contenedor, se muestra la lista */
+.dropdown-contenedor:hover .nav-links-desplegable {
+    display: block;
+}
+
+/* 3. El Div de Búsqueda (Empuja todo a la derecha) */
+.nav-search {
+    margin-left: auto; /* La magia para mandarlo a la derecha */
+    display: flex;
+    align-items: center;
+    padding-right: 15px; /* Espacio antes del cuarto div */
+}
+
+/* Estilo para el FORM que ya tienes */
+.nav-search form {
+    display: flex;
+    align-items: center;
+    background-color: #242f3a; /* Gris azulado oscuro */
+    border-radius: 20px;
+    padding: 5px 15px;
+    border: 1px solid transparent;
+    transition: border 0.3s ease;
+}
+
+/* Cuando pasas el mouse por el buscador */
+.nav-search form:hover {
+    border: 1px solid #ffb6c1; /* El toque rosita Molly */
+}
+
+/* El INPUT de tu código */
+.nav-search input[type="text"] {
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    padding: 5px;
+    width: 140px; /* Tamaño discreto */
+    font-size: 0.9rem;
+}
+
+/* El BOTÓN de la lupa de tu código */
+.nav-search button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0;
+    margin-left: 5px;
+    filter: grayscale(1); /* Para que la lupa no sea tan colorida y se vea elegante */
+}
+
+.nav-search button:hover {
+    filter: grayscale(0); /* Recupera el color al pasar el mouse */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Espacio entre los botones del menú */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: white; /* Efecto simple al pasar el mouse */
+}
+
+/* Empujar el último menú a la derecha si es necesario */
+.nav-user-menu {
+    margin-left: 0;
+    display: flex;
+    align-items: center; 
+}
+
+
+/* Esta es la regla clave para el cuarto div */
+.genres-right {
+    right: 0; /* Alinea el menú al borde derecho para que no se salga de la pantalla */
+    left: auto; /* Desactiva la alineación a la izquierda */
+}
+
+/* Aseguramos que el contenedor de configuración esté alineado */
+.nav-config-menu {
+    display: flex;
+    align-items: center;
+    margin-left: 15px; /* Espacio entre Géneros y Configuración */
+}
+
+/* Reutilizamos el truco para que el menú abra hacia la izquierda y no se corte */
+.config-right {
+    right: 0;
+    left: auto;
+}
+
+/* IMPORTANTE: Asegúrate de que el hover incluya a este nuevo menú */
+.nav-config-menu:hover .nav-links-desplegable {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+.carrusel-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden; /* Esconde lo que se sale del ancho */
+    position: relative;
+    background-color: #000;
+    margin-bottom: 30px;
+    display: block !important;
+}
+
+.carrusel-track {
+    display: flex; /* Pone las imágenes una al lado de la otra */
+    width: 400%; /* Ajusta según cuántas imágenes tengas */
+    animation: scrollCarrusel 20s linear infinite; /* Animación automática */
+}
+
+.carrusel-item {
+    width: 100%;
+    position: relative;
+}
+
+.carrusel-item img {
+    width: 100%;
+    height: 400px; /* Altura fija para que se vea como banner */
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0)); /* Desvanecido abajo */
+    display: block;
+}
+
+/* Información encima de la imagen */
+.carrusel-info {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.carrusel-info h2 {
+    font-size: 2.5rem;
+    color: #ffb6c1; /* Tu toque rosa */
+    margin-bottom: 10px;
+}
+
+/* Animación simple para que se mueva solo */
+@keyframes scrollCarrusel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Contenedor Grid */
+.grid-contenidos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* Estilo de la Tarjeta */
+.tarjeta-contenido {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #333;
+}
+
+.tarjeta-contenido:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3); /* Brillo rosa uwu */
+}
+
+/* Imagen y Overlay */
+.tarjeta-imagen {
+    position: relative;
+    aspect-ratio: 2 / 3;
+}
+
+.tarjeta-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge-tipo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 20, 147, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+/* Información tarjetas */
+.tarjeta-info {
+    padding: 15px;
+    color: white;
+}
+
+.tarjeta-info h3 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sinopsis-corta {
+    font-size: 0.85rem;
+    color: #bbb;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+/* --- ESTILOS PARA detalleContenido --- */
+
+.contenedor-detalle {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.tarjeta-detalle {
+    display: flex;
+    flex-direction: row;
+    background-color: #1a1a1a; /* Color oscuro de tus tarjetas */
+    color: white;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); /* Brillo rosa uwu */
+}
+
+.seccion-poster {
+    flex: 1;
+    max-width: 350px;
+    border-right: 1px solid #333;
+}
+
+.seccion-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.seccion-info {
+    flex: 1.5;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.seccion-info h1 {
+    color: #ffb6c1; /* Tu rosa característico */
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+.info-meta {
+    font-size: 0.9rem;
+    color: #bbb;
+    display: flex;
+    gap: 15px;
+}
+
+.info-meta b {
+    color: #b0c2f2; /* El azul de tus botones */
+}
+
+.sinopsis-detalle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #eee;
+}
+
+.contenedor-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.tag-categoria {
+    background: rgba(255, 20, 147, 0.2);
+    color: #ffb6c1;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    border: 1px solid #ffb6c1;
+}
+
+.acciones-detalle {
+    margin-top: auto;
+    display: flex;
+    gap: 15px;
+}
+
+/* Usamos el estilo de tus botones existentes */
+.btn-volver {
+    background-color: #b0c2f2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    background-color: #ffb6c1;
+    transform: scale(1.05);
+}
+
+h3{
+	text-align:center;
+}
+
+table {
+	width:80%;
+	text-align:center;
+	margin:auto;
+	border-collapse:collapse;
+	border:2px solid #000000;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+th, td{
+	text-align: center;
+    border: 1px solid #000000;
+    padding: 10px;	
+}
+
+th {
+	background-color: #C0C0C0;
+}
+
+td{
+	white-space: normal;
+	max-width: 300px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.sinopsis-compacta {
+	display: -webkit-box !important;
+    -webkit-line-clamp: 3; /* Número de líneas visibles */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word; /* Fuerza el salto de línea en palabras largas */
+    white-space: normal !important; /* ¡ESTA ES LA CLAVE! Evita que se vaya a la derecha */
+    text-overflow: ellipsis;
+    transition: all 0.3s ease; /* Para que se abra suavemente */
+    /* MUY IMPORTANTE: Dale un ancho máximo o no sabrá dónde cortar */
+    max-width: 300px; 
+    margin: 0;
+    height: 4.2em;
+    line-height: 1.4em; /* Ajusta según tu fuente */
+}
+
+.sinopsis-expandida {
+    display: block !important;           /* Cambia de box a bloque normal */
+    -webkit-line-clamp: none !important; /* Elimina el límite de líneas */
+    line-clamp: 3;
+    -webkit-box-orient: horizontal !important; /* Rompe la orientación vertical */
+    overflow: visible !important;        /* Permite que el texto se vea */
+    height: auto !important;             /* Fuerza a que la altura sea natural */
+    max-height: none !important;         /* Por si acaso hay un límite de altura */
+    width: auto !important; 
+    white-space: normal !important;
+}
+
+.leer-mas {
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Contenedor principal con scroll */
+.contenedor-checkboxes {
+    max-height: 250px; /* Altura máxima para que no crezca infinito */
+    overflow-y: auto;  /* Activa el scroll vertical */
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #ffafea;
+    border-radius: 8px;
+    
+    /* Creamos la cuadrícula de 3 columnas */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px;
+}
+
+/* Estilo para cada item (checkbox + etiqueta) */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.checkbox-item input {
+    margin-right: 8px; /* Espacio entre el cuadro y el texto */
+}
+
+
+
+input[type="button"]{
+	display: block;      /* Cambiamos de inline a block */
+    margin-left: auto;   /* Empuja desde la izquierda */
+    margin-right: auto;  /* Empuja desde la derecha*/
+	background-color: #b0c2f2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+input[type="submit"]{
+	display: block;      /* Cambiamos de inline a block */
+    margin-left: auto;   /* Empuja desde la izquierda */
+    margin-right: auto;  /* Empuja desde la derecha*/
+	margin-top:20px;
+	background-color: #b0c2f2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.imagen{
+	text-align:center;
+	margin-top:20px;
+}
